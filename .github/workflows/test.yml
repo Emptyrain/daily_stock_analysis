@@ -1,0 +1,23 @@
+name: Test Secrets
+
+on:
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test secrets
+        env:
+          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
+          FEISHU_APP_ID: ${{ secrets.FEISHU_APP_ID }}
+          FEISHU_APP_SECRET: ${{ secrets.FEISHU_APP_SECRET }}
+          FEISHU_CHAT_ID: ${{ secrets.FEISHU_CHAT_ID }}
+          STOCK_LIST: ${{ secrets.STOCK_LIST }}
+        run: |
+          echo "DEEPSEEK_API_KEY set: $([ -n "$DEEPSEEK_API_KEY" ] && echo yes || echo no)"
+          echo "DEEPSEEK_API_KEY length: ${#DEEPSEEK_API_KEY}"
+          echo "FEISHU_APP_ID set: $([ -n "$FEISHU_APP_ID" ] && echo yes || echo no)"
+          echo "FEISHU_APP_ID length: ${#FEISHU_APP_ID}"
+          echo "STOCK_LIST set: $([ -n "$STOCK_LIST" ] && echo yes || echo no)"
+          echo "STOCK_LIST length: ${#STOCK_LIST}"
